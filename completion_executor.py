@@ -1,7 +1,18 @@
 import base64
 import json
 import http.client
-from private_key import api_credentials
+from dotenv import load_dotenv
+import os
+
+# .env 파일 로드
+load_dotenv()
+
+# 환경 변수 읽기
+api_credentials = {
+    'host': os.getenv('HOST'),
+    'client_id': os.getenv('CLIENT_ID'),
+    'client_secret': os.getenv('CLIENT_SECRET')
+}
 
 class CompletionExecutor:
     def __init__(self, host, client_id, client_secret, access_token=None):

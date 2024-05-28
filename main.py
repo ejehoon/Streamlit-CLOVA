@@ -1,7 +1,11 @@
+import os
+from dotenv import load_dotenv
 import streamlit as st
 from sliding_window_executor import sliding_window_executor
 from completion_executor import completion_executor
-from private_key import api_credentials
+
+# .env 파일 로드
+load_dotenv()
 
 # 슬라이딩 윈도우 최대 토큰 수 설정
 MAX_TOKENS_SLIDING = 3900
@@ -50,7 +54,6 @@ def main():
             # Step 1: 슬라이딩 윈도우 적용
             adjusted_messages = sliding_window_executor.execute(request_data)
             print("Adjusted Messages:", adjusted_messages)  # 조정된 메시지 출력
-
 
             # Step 2: Chat Completions API 요청
             completion_request_data = {
